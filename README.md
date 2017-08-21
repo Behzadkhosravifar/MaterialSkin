@@ -115,7 +115,7 @@ If you wish to contact me for anything you can get in touch at:
 
 #### Images
 
-![alt tag](http://i.imgur.com/Ub0N9Xf.png)
+![demo image](https://github.com/Behzadkhosravifar/MaterialSkin/raw/master/Solution%20Items/demo.png)
 
 *A simple demo interface with MaterialSkin components.*
 
