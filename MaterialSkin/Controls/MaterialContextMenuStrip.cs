@@ -108,7 +108,7 @@ namespace MaterialSkin.Controls
             var textRect = new Rectangle(24, itemRect.Y, itemRect.Width - (24 + 16), itemRect.Height);
             g.DrawString(
                 e.Text,
-                SkinManager.RobotoMedium10,
+                SkinManager.NazanintarMedium11,
                 e.Item.Enabled ? SkinManager.GetPrimaryTextBrush() : SkinManager.GetDisabledOrHintBrush(),
                 textRect,
                 new StringFormat { LineAlignment = StringAlignment.Center });

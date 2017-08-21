@@ -957,7 +957,7 @@ namespace MaterialSkin.Controls
             _baseTextBox = new BaseTextBox
             {
                 BorderStyle = BorderStyle.None,
-                Font = SkinManager.RobotoRegular11,
+                Font = SkinManager.NazanintarRegular11,
                 ForeColor = SkinManager.GetPrimaryTextColor(),
                 Location = new Point(0, 0),
                 Width = Width,

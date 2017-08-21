@@ -83,7 +83,7 @@ namespace MaterialSkin.Controls
 
         public override Size GetPreferredSize(Size proposedSize)
         {
-            var w = _boxOffset + CheckboxSize + 2 + (int)CreateGraphics().MeasureString(Text, SkinManager.RobotoMedium10).Width;
+            var w = _boxOffset + CheckboxSize + 2 + (int)CreateGraphics().MeasureString(Text, SkinManager.NazanintarMedium11).Width;
             return Ripple ? new Size(w, 30) : new Size(w, 20);
         }
 
@@ -160,10 +160,10 @@ namespace MaterialSkin.Controls
             }
 
             // draw checkbox text
-            SizeF stringSize = g.MeasureString(Text, SkinManager.RobotoMedium10);
+            SizeF stringSize = g.MeasureString(Text, SkinManager.NazanintarMedium11);
             g.DrawString(
                 Text,
-                SkinManager.RobotoMedium10,
+                SkinManager.NazanintarMedium11,
                 Enabled ? SkinManager.GetPrimaryTextBrush() : SkinManager.GetDisabledOrHintBrush(),
                 _boxOffset + TextOffset, Height / 2 - stringSize.Height / 2);
 
@@ -210,7 +210,7 @@ namespace MaterialSkin.Controls
         protected override void OnCreateControl()
         {
             base.OnCreateControl();
-            Font = SkinManager.RobotoMedium10;
+            Font = SkinManager.NazanintarMedium11;
 
             if (DesignMode) return;
 

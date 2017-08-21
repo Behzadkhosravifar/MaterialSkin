@@ -6,6 +6,7 @@ using System.Drawing.Text;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+// ReSharper disable VirtualMemberCallInConstructor
 
 namespace MaterialSkin.Controls
 {
@@ -170,6 +171,8 @@ namespace MaterialSkin.Controls
             FormBorderStyle = FormBorderStyle.None;
             Sizable = true;
             DoubleBuffered = true;
+            RightToLeft = RightToLeft.Yes;
+            AutoScaleMode = AutoScaleMode.Dpi;
             SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.ResizeRedraw, true);
 
             // This enables the form to trigger the MouseMove event even when mouse is over another control
@@ -576,7 +579,7 @@ namespace MaterialSkin.Controls
             }
 
             //Form title
-            g.DrawString(Text, SkinManager.RobotoMedium12, SkinManager.ColorScheme.TextBrush, new Rectangle(SkinManager.FormPadding, StatusBarHeight, Width, ActionBarHeight), new StringFormat { LineAlignment = StringAlignment.Center });
+            g.DrawString(Text, SkinManager.NazanintarMedium13, SkinManager.ColorScheme.TextBrush, new Rectangle(SkinManager.FormPadding, StatusBarHeight, Width - 30, ActionBarHeight), new StringFormat { LineAlignment = StringAlignment.Center, Alignment = StringAlignment.Far });
         }
 
         #endregion

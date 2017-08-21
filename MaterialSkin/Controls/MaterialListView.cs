@@ -63,7 +63,7 @@ namespace MaterialSkin.Controls
         {
             e.Graphics.FillRectangle(new SolidBrush(SkinManager.GetApplicationBackgroundColor()), new Rectangle(e.Bounds.X, e.Bounds.Y, Width, e.Bounds.Height));
             e.Graphics.DrawString(e.Header.Text,
-                SkinManager.RobotoMedium10,
+                SkinManager.NazanintarMedium12,
                 SkinManager.GetSecondaryTextBrush(),
                 new Rectangle(e.Bounds.X + ItemPadding, e.Bounds.Y + ItemPadding, e.Bounds.Width - ItemPadding * 2, e.Bounds.Height - ItemPadding * 2),
                 GetStringFormat());
@@ -97,7 +97,7 @@ namespace MaterialSkin.Controls
             foreach (ListViewItem.ListViewSubItem subItem in e.Item.SubItems)
             {
                 //Draw text
-                g.DrawString(subItem.Text, SkinManager.RobotoMedium10, SkinManager.GetPrimaryTextBrush(),
+                g.DrawString(subItem.Text, SkinManager.NazanintarRegular11, SkinManager.GetPrimaryTextBrush(),
                                  new Rectangle(subItem.Bounds.X + ItemPadding, ItemPadding, subItem.Bounds.Width - 2 * ItemPadding, subItem.Bounds.Height - 2 * ItemPadding),
                                  GetStringFormat());
             }
@@ -145,7 +145,7 @@ namespace MaterialSkin.Controls
             // This hack tries to apply the Roboto (24) font to all ListViewItems in this ListView
             // It only succeeds if the font is installed on the system.
             // Otherwise, a default sans serif font is used.
-            var roboto24 = new Font(SkinManager.RobotoMedium12.FontFamily, 24);
+            var roboto24 = new Font(SkinManager.NazanintarMedium13.FontFamily, 24);
             var roboto24Logfont = new LogFont();
             roboto24.ToLogFont(roboto24Logfont);
 

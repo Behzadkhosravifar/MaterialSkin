@@ -63,9 +63,9 @@ namespace MaterialSkin.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] Roboto_Medium {
+        internal static byte[] Nazanintar {
             get {
-                object obj = ResourceManager.GetObject("Roboto_Medium", resourceCulture);
+                object obj = ResourceManager.GetObject("Nazanintar", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -73,9 +73,9 @@ namespace MaterialSkin.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] Roboto_Regular {
+        internal static byte[] NazanintarB {
             get {
-                object obj = ResourceManager.GetObject("Roboto_Regular", resourceCulture);
+                object obj = ResourceManager.GetObject("NazanintarB", resourceCulture);
                 return ((byte[])(obj));
             }
         }

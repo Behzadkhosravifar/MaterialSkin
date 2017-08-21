@@ -11,7 +11,7 @@ namespace MaterialSkinExample
         public MainForm()
         {
             InitializeComponent();
-
+            
             // Initialize MaterialSkinManager
             _materialSkinManager = MaterialSkinManager.Instance;
             _materialSkinManager.AddFormToManage(this);

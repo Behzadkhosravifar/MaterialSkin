@@ -85,7 +85,7 @@ namespace MaterialSkin.Controls
 
         public override Size GetPreferredSize(Size proposedSize)
         {
-            var width = _boxOffset + 20 + (int)CreateGraphics().MeasureString(Text, SkinManager.RobotoMedium10).Width;
+            var width = _boxOffset + 20 + (int)CreateGraphics().MeasureString(Text, SkinManager.NazanintarMedium11).Width;
             return Ripple ? new Size(width, 30) : new Size(width, 20);
         }
 
@@ -157,8 +157,8 @@ namespace MaterialSkin.Controls
                     g.FillPath(brush, path);
                 }
             }
-            SizeF stringSize = g.MeasureString(Text, SkinManager.RobotoMedium10);
-            g.DrawString(Text, SkinManager.RobotoMedium10, Enabled ? SkinManager.GetPrimaryTextBrush() : SkinManager.GetDisabledOrHintBrush(), _boxOffset + 22, Height / 2 - stringSize.Height / 2);
+            SizeF stringSize = g.MeasureString(Text, SkinManager.NazanintarMedium11);
+            g.DrawString(Text, SkinManager.NazanintarMedium11, Enabled ? SkinManager.GetPrimaryTextBrush() : SkinManager.GetDisabledOrHintBrush(), _boxOffset + 22, Height / 2 - stringSize.Height / 2);
 
             brush.Dispose();
             pen.Dispose();
@@ -172,7 +172,7 @@ namespace MaterialSkin.Controls
         protected override void OnCreateControl()
         {
             base.OnCreateControl();
-            Font = SkinManager.RobotoMedium10;
+            Font = SkinManager.NazanintarMedium11;
 
             if (DesignMode) return;
 

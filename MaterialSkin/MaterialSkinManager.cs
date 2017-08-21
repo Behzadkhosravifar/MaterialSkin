@@ -225,11 +225,12 @@ namespace MaterialSkin
             return Theme == Themes.Light ? BackgroundLight : BackgroundDark;
         }
 
-        //Roboto font
-        public Font RobotoMedium12;
-        public Font RobotoRegular11;
-        public Font RobotoMedium11;
-        public Font RobotoMedium10;
+        //Iransans font
+        public Font NazanintarRegular10 { get; set; }
+        public Font NazanintarRegular11 { get; set; }
+        public Font NazanintarMedium11 { get; set; }
+        public Font NazanintarMedium12 { get; set; }
+        public Font NazanintarMedium13 { get; set; }
 
         //Other constants
         public int FormPadding = 14;
@@ -239,10 +240,11 @@ namespace MaterialSkin
 
         private MaterialSkinManager()
         {
-            RobotoMedium12 = new Font(LoadFont(Resources.Roboto_Medium), 12f);
-            RobotoMedium10 = new Font(LoadFont(Resources.Roboto_Medium), 10f);
-            RobotoRegular11 = new Font(LoadFont(Resources.Roboto_Regular), 11f);
-            RobotoMedium11 = new Font(LoadFont(Resources.Roboto_Medium), 11f);
+            NazanintarRegular10 = new Font(LoadFont(Resources.Nazanintar), 10f);
+            NazanintarRegular11 = new Font(LoadFont(Resources.Nazanintar), 11f);
+            NazanintarMedium11 = new Font(LoadFont(Resources.NazanintarB), 11f);
+            NazanintarMedium12 = new Font(LoadFont(Resources.NazanintarB), 12f);
+            NazanintarMedium13 = new Font(LoadFont(Resources.NazanintarB), 13f);
             Theme = Themes.Light;
             ColorScheme = new ColorScheme(Primary.BlueGrey800, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightBlue200, TextShade.White);
         }
