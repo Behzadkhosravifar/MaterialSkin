@@ -109,10 +109,10 @@ namespace MaterialSkin
 
         //Application background
         private static readonly Color BackgroundLight = Color.FromArgb(255, 255, 255, 255);
-        private static Brush _backgroundLightBrush = new SolidBrush(BackgroundLight);
+        //private static Brush _backgroundLightBrush = new SolidBrush(BackgroundLight);
 
         private static readonly Color BackgroundDark = Color.FromArgb(255, 51, 51, 51);
-        private static Brush _backgroundDarkBrush = new SolidBrush(BackgroundDark);
+        //private static Brush _backgroundDarkBrush = new SolidBrush(BackgroundDark);
 
         //Application action bar
         public readonly Color ActionBarText = Color.FromArgb(255, 255, 255, 255);
@@ -297,7 +297,6 @@ namespace MaterialSkin
                 control.BackColor = newBackColor;
                 if (control is MaterialToolStripMenuItem && (control as MaterialToolStripMenuItem).HasDropDown)
                 {
-
                     //recursive call
                     UpdateToolStrip((control as MaterialToolStripMenuItem).DropDown, newBackColor);
                 }

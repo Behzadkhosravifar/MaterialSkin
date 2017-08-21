@@ -1,6 +1,8 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Drawing;
+using System.Globalization;
+using System.Numerics;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using MaterialSkin.Animations;
@@ -9,6 +11,8 @@ namespace MaterialSkin.Controls
 {
     public class MaterialSingleLineTextField : Control, IMaterialControl
     {
+        #region Properties
+
         //Properties for managing the material design properties
         [Browsable(false)]
         public int Depth { get; set; }
@@ -32,7 +36,6 @@ namespace MaterialSkin.Controls
         public int MaxLength { get { return _baseTextBox.MaxLength; } set { _baseTextBox.MaxLength = value; } }
 
         public string SelectedText { get { return _baseTextBox.SelectedText; } set { _baseTextBox.SelectedText = value; } }
-        public string Hint { get { return _baseTextBox.Hint; } set { _baseTextBox.Hint = value; } }
 
         public int SelectionStart { get { return _baseTextBox.SelectionStart; } set { _baseTextBox.SelectionStart = value; } }
         public int SelectionLength { get { return _baseTextBox.SelectionLength; } set { _baseTextBox.SelectionLength = value; } }
@@ -40,13 +43,88 @@ namespace MaterialSkin.Controls
 
         public bool UseSystemPasswordChar { get { return _baseTextBox.UseSystemPasswordChar; } set { _baseTextBox.UseSystemPasswordChar = value; } }
         public char PasswordChar { get { return _baseTextBox.PasswordChar; } set { _baseTextBox.PasswordChar = value; } }
+        
+        [Browsable(true), EditorBrowsable(EditorBrowsableState.Always)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        [Description("Hint text, when text box is empty this value be superseded."), Category("Appearance")]
+        [Localizable(true)]
+        public string Hint
+        {
+            set
+            {
+                _baseTextBox.Hint = value;
+            }
+            get { return _baseTextBox.Hint; }
+        }
+        
+        [Browsable(true), EditorBrowsable(EditorBrowsableState.Always)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        [Description("Is Numerical TextBox? if value is true then just typed numbers, and if false then typed any chars."), Category("Behavior")]
+        [DefaultValue(false)]
+        public bool IsNumerical
+        {
+            get { return _isNumerical; }
+            set
+            {
+                _isNumerical = value;
 
-        public void SelectAll() { _baseTextBox.SelectAll(); }
-        public void Clear() { _baseTextBox.Clear(); }
-        public new void Focus() { _baseTextBox.Focus(); }
+                if (!value)
+                {
+                    ThousandsSeparator = false;
+                    AcceptMathChars = false;
+                }
+            }
+        }
+        private bool _isNumerical;
 
+        [Browsable(true), EditorBrowsable(EditorBrowsableState.Always)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        [Description("Show Thousands Separator in TextBox? if value is true then split any 3 numerical digits by char ',' .\n\rNote: IsNumerical must be 'true' for runes this behavior."), Category("Behavior")]
+        [DisplayName("Thousands Separator"), DefaultValue(false)]
+        public bool ThousandsSeparator
+        {
+            get { return _thousandsSeparator; }
+            set
+            {
+                _thousandsSeparator = value;
+                if (value)
+                {
+                    IsNumerical = true;
+                    AcceptMathChars = false;
+                }
+            }
+        }
+        private bool _thousandsSeparator;
 
-        # region Forwarding events to baseTextBox
+        [Browsable(true), EditorBrowsable(EditorBrowsableState.Always)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        [Description("Convert Enter key press to TAB and focus next controls."), Category("Behavior")]
+        [DisplayName("Enter key To Tab")]
+        public bool EnterToTab { get; set; }
+
+        [Browsable(true), EditorBrowsable(EditorBrowsableState.Always)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        [Description("Accepting mathematical operators such as + , - , * and /"), Category("Behavior")]
+        [DefaultValue(false)]
+        public bool AcceptMathChars
+        {
+            get { return _acceptMathChars; }
+            set
+            {
+                _acceptMathChars = value;
+                if (value)
+                {
+                    IsNumerical = true;
+                    ThousandsSeparator = false;
+                }
+            }
+        }
+        private bool _acceptMathChars;
+        
+        #endregion
+
+        #region Forwarding events to baseTextBox
+
         public event EventHandler AcceptsTabChanged
         {
             add
@@ -131,7 +209,7 @@ namespace MaterialSkin.Controls
             }
         }
 
-        public new event UICuesEventHandler ChangeUiCues
+        public event UICuesEventHandler ChangeUiCues
         {
             add
             {
@@ -948,6 +1026,74 @@ namespace MaterialSkin.Controls
         }
         #endregion
 
+        #region PreInitialized Events
+        
+        private void _baseKeyUp(KeyEventArgs e)
+        {
+            base.OnKeyUp(e);
+
+            if (ThousandsSeparator && !AcceptMathChars)
+            {
+                var indexSelectionBuffer = SelectionStart;
+                if (!string.IsNullOrEmpty(Text) && e.KeyData != Keys.Left && e.KeyData != Keys.Right)
+                {
+                    BigInteger valueBefore;
+                    // Parse currency value using en-GB culture. 
+                    // value = "�1,097.63";
+                    // Displays:  
+                    //       Converted '�1,097.63' to 1097.63
+                    var style = NumberStyles.Number | NumberStyles.AllowCurrencySymbol;
+                    var culture = CultureInfo.CreateSpecificCulture("en-US");
+                    if (BigInteger.TryParse(Text, style, culture, out valueBefore))
+                    {
+                        Text = String.Format(culture, "{0:N0}", valueBefore);
+                        if (e.KeyData != Keys.Delete && e.KeyData != Keys.Back) _baseTextBox.Select(Text.Length, 0);
+                        else _baseTextBox.Select(indexSelectionBuffer, 0);
+                    }
+                }
+            }
+        }
+        private void _baseKeyDown(KeyEventArgs e)
+        {
+            base.OnKeyDown(e);
+            //
+            if (e.KeyCode == Keys.Enter && EnterToTab) SendKeys.Send("{TAB}");
+        }
+        private void _baseKeyPress(KeyPressEventArgs e)
+        {
+            base.OnKeyPress(e);
+            //
+            if (!char.IsDigit(e.KeyChar) && IsNumerical)
+            {
+                int charValue = e.KeyChar;
+                const int backKeyCharValue = 8; // 8 or '\b'
+                const int deleteKeyCharValue = 13; // 13 or '\d'
+
+                if (charValue == backKeyCharValue || charValue == deleteKeyCharValue)
+                {
+                    e.Handled = false;
+                    return;
+                }
+                if (AcceptMathChars && !ThousandsSeparator)
+                {
+                    if (e.KeyChar == '+' || e.KeyChar == '-' ||
+                        e.KeyChar == '*' || e.KeyChar == '/' ||
+                        e.KeyChar == '(' || e.KeyChar == ')')
+                    {
+                        e.Handled = false;
+                        return;
+                    }
+                }
+
+                e.Handled = true;
+            }
+            else
+            {
+                e.Handled = false;
+            }
+        }
+
+        #endregion
 
         public MaterialSingleLineTextField()
         {
@@ -978,6 +1124,9 @@ namespace MaterialSkin.Controls
 
             _baseTextBox.GotFocus += (sender, args) => _animationManager.StartNewAnimation(AnimationDirection.In);
             _baseTextBox.LostFocus += (sender, args) => _animationManager.StartNewAnimation(AnimationDirection.Out);
+            _baseTextBox.KeyDown += (sender, args) => _baseKeyDown(args);
+            _baseTextBox.KeyUp += (sender, args) => _baseKeyUp(args);
+            _baseTextBox.KeyPress += (sender, args) => _baseKeyPress(args);
             BackColorChanged += (sender, args) =>
             {
                 _baseTextBox.BackColor = BackColor;
@@ -986,8 +1135,15 @@ namespace MaterialSkin.Controls
 
             //Fix for tabstop
             _baseTextBox.TabStop = true;
-            this.TabStop = false;
+            TabStop = false;
         }
+
+        private void _baseTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        #region Methods
 
         protected override void OnPaint(PaintEventArgs pevent)
         {
@@ -1033,6 +1189,12 @@ namespace MaterialSkin.Controls
             _baseTextBox.BackColor = Parent.BackColor;
             _baseTextBox.ForeColor = SkinManager.GetPrimaryTextColor();
         }
+
+        public void SelectAll() { _baseTextBox.SelectAll(); }
+        public void Clear() { _baseTextBox.Clear(); }
+        public new void Focus() { _baseTextBox.Focus(); }
+
+        #endregion
 
         private class BaseTextBox : TextBox
         {

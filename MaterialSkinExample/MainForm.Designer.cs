@@ -278,6 +278,7 @@ namespace MaterialSkinExample
             this.materialSingleLineTextField2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.materialSingleLineTextField2.Depth = 0;
+            this.materialSingleLineTextField2.EnterToTab = false;
             this.materialSingleLineTextField2.Hint = "Another example hint";
             this.materialSingleLineTextField2.Location = new System.Drawing.Point(0, 51);
             this.materialSingleLineTextField2.MaxLength = 32767;
@@ -298,6 +299,7 @@ namespace MaterialSkinExample
             this.materialSingleLineTextField1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.materialSingleLineTextField1.Depth = 0;
+            this.materialSingleLineTextField1.EnterToTab = false;
             this.materialSingleLineTextField1.Hint = "This is a hint";
             this.materialSingleLineTextField1.Location = new System.Drawing.Point(0, 14);
             this.materialSingleLineTextField1.MaxLength = 32767;
@@ -399,7 +401,9 @@ namespace MaterialSkinExample
             this.materialSingleLineTextField3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.materialSingleLineTextField3.Depth = 0;
+            this.materialSingleLineTextField3.EnterToTab = false;
             this.materialSingleLineTextField3.Hint = "This is a password";
+            this.materialSingleLineTextField3.IsNumerical = true;
             this.materialSingleLineTextField3.Location = new System.Drawing.Point(0, 88);
             this.materialSingleLineTextField3.MaxLength = 32767;
             this.materialSingleLineTextField3.MouseState = MaterialSkin.MouseState.Hover;
@@ -412,7 +416,8 @@ namespace MaterialSkinExample
             this.materialSingleLineTextField3.TabIndex = 4;
             this.materialSingleLineTextField3.TabStop = false;
             this.materialSingleLineTextField3.TextAlignment = System.Windows.Forms.HorizontalAlignment.Right;
-            this.materialSingleLineTextField3.UseSystemPasswordChar = true;
+            this.materialSingleLineTextField3.ThousandsSeparator = true;
+            this.materialSingleLineTextField3.UseSystemPasswordChar = false;
             // 
             // materialRaisedButton1
             // 
