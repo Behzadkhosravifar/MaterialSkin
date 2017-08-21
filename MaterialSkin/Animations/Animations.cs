@@ -20,8 +20,8 @@ namespace MaterialSkin.Animations
 
     static class AnimationEaseInOut
     {
-        public static double PI = Math.PI;
-        public static double PI_HALF = Math.PI / 2;
+        public static double Pi = Math.PI;
+        public static double PiHalf = Math.PI / 2;
 
         public static double CalculateProgress(double progress)
         {
@@ -30,7 +30,7 @@ namespace MaterialSkin.Animations
 
         private static double EaseInOut(double s)
         {
-            return s - Math.Sin(s * 2 * PI) / (2 * PI);
+            return s - Math.Sin(s * 2 * Pi) / (2 * Pi);
         }
     }
 

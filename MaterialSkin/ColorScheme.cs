@@ -79,8 +79,8 @@ namespace MaterialSkin
     //Color constantes
     public enum TextShade
     {
-        WHITE = 0xFFFFFF,
-        BLACK = 0x212121
+        White = 0xFFFFFF,
+        Black = 0x212121
     }
 
     public enum Primary
@@ -274,7 +274,16 @@ namespace MaterialSkin
         BlueGrey600 = 0x546E7A,
         BlueGrey700 = 0x455A64,
         BlueGrey800 = 0x37474F,
-        BlueGrey900 = 0x263238
+        BlueGrey900 = 0x263238,
+        EasternBlue100 = 0x1FAFB7,
+        EasternBlue200 = 0x1E9E93,
+        EasternBlue300 = 0x1E9C93,
+        EasternBlue400 = 0x1D9A93,
+        EasternBlue500 = 0x1C9C93,
+        EasternBlue600 = 0x1A9991,
+        EasternBlue700 = 0x189693,
+        EasternBlue800 = 0x179492,
+        EasternBlue900 = 0x159E9D
     }
 
     public enum Accent

@@ -66,7 +66,7 @@ namespace MaterialSkin.Controls
             set
             {
                 base.Text = value;
-                _textSize = CreateGraphics().MeasureString(value.ToUpper(), SkinManager.ROBOTO_MEDIUM_10);
+                _textSize = CreateGraphics().MeasureString(value.ToUpper(), SkinManager.RobotoMedium10);
                 if (AutoSize)
                     Size = GetPreferredSize();
                 Invalidate();
@@ -136,7 +136,7 @@ namespace MaterialSkin.Controls
 
             g.DrawString(
                 Text.ToUpper(),
-                SkinManager.ROBOTO_MEDIUM_10,
+                SkinManager.RobotoMedium10,
                 Enabled ? (Primary ? SkinManager.ColorScheme.PrimaryBrush : SkinManager.GetPrimaryTextBrush()) : SkinManager.GetFlatButtonDisabledTextBrush(),
                 textRect,
                 new StringFormat { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center }
@@ -166,16 +166,16 @@ namespace MaterialSkin.Controls
             base.OnCreateControl();
             if (DesignMode) return;
 
-            MouseState = MouseState.OUT;
+            MouseState = MouseState.Out;
             MouseEnter += (sender, args) =>
             {
-                MouseState = MouseState.HOVER;
+                MouseState = MouseState.Hover;
                 _hoverAnimationManager.StartNewAnimation(AnimationDirection.In);
                 Invalidate();
             };
             MouseLeave += (sender, args) =>
             {
-                MouseState = MouseState.OUT;
+                MouseState = MouseState.Out;
                 _hoverAnimationManager.StartNewAnimation(AnimationDirection.Out);
                 Invalidate();
             };
@@ -183,7 +183,7 @@ namespace MaterialSkin.Controls
             {
                 if (args.Button == MouseButtons.Left)
                 {
-                    MouseState = MouseState.DOWN;
+                    MouseState = MouseState.Down;
 
                     _animationManager.StartNewAnimation(AnimationDirection.In, args.Location);
                     Invalidate();
@@ -191,7 +191,7 @@ namespace MaterialSkin.Controls
             };
             MouseUp += (sender, args) =>
             {
-                MouseState = MouseState.HOVER;
+                MouseState = MouseState.Hover;
 
                 Invalidate();
             };

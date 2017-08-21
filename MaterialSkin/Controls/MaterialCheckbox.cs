@@ -41,9 +41,9 @@ namespace MaterialSkin.Controls
         private readonly AnimationManager _animationManager;
         private readonly AnimationManager _rippleAnimationManager;
 
-        private const int CHECKBOX_SIZE = 18;
-        private const int CHECKBOX_SIZE_HALF = CHECKBOX_SIZE / 2;
-        private const int CHECKBOX_INNER_BOX_SIZE = CHECKBOX_SIZE - 4;
+        private const int CheckboxSize = 18;
+        private const int CheckboxSizeHalf = CheckboxSize / 2;
+        private const int CheckboxInnerBoxSize = CheckboxSize - 4;
 
         private int _boxOffset;
         private Rectangle _boxRectangle;
@@ -78,17 +78,17 @@ namespace MaterialSkin.Controls
             base.OnSizeChanged(e);
 
             _boxOffset = Height / 2 - 9;
-            _boxRectangle = new Rectangle(_boxOffset, _boxOffset, CHECKBOX_SIZE - 1, CHECKBOX_SIZE - 1);
+            _boxRectangle = new Rectangle(_boxOffset, _boxOffset, CheckboxSize - 1, CheckboxSize - 1);
         }
 
         public override Size GetPreferredSize(Size proposedSize)
         {
-            var w = _boxOffset + CHECKBOX_SIZE + 2 + (int)CreateGraphics().MeasureString(Text, SkinManager.ROBOTO_MEDIUM_10).Width;
+            var w = _boxOffset + CheckboxSize + 2 + (int)CreateGraphics().MeasureString(Text, SkinManager.RobotoMedium10).Width;
             return Ripple ? new Size(w, 30) : new Size(w, 20);
         }
 
         private static readonly Point[] CheckmarkLine = { new Point(3, 8), new Point(7, 12), new Point(14, 5) };
-        private const int TEXT_OFFSET = 22;
+        private const int TextOffset = 22;
         protected override void OnPaint(PaintEventArgs pevent)
         {
             var g = pevent.Graphics;
@@ -98,7 +98,7 @@ namespace MaterialSkin.Controls
             // clear the control
             g.Clear(Parent.BackColor);
 
-            var CHECKBOX_CENTER = _boxOffset + CHECKBOX_SIZE_HALF - 1;
+            var checkboxCenter = _boxOffset + CheckboxSizeHalf - 1;
 
             var animationProgress = _animationManager.GetProgress();
 
@@ -115,7 +115,7 @@ namespace MaterialSkin.Controls
                 for (var i = 0; i < _rippleAnimationManager.GetAnimationCount(); i++)
                 {
                     var animationValue = _rippleAnimationManager.GetProgress(i);
-                    var animationSource = new Point(CHECKBOX_CENTER, CHECKBOX_CENTER);
+                    var animationSource = new Point(checkboxCenter, checkboxCenter);
                     var rippleBrush = new SolidBrush(Color.FromArgb((int)((animationValue * 40)), ((bool)_rippleAnimationManager.GetData(i)[0]) ? Color.Black : brush.Color));
                     var rippleHeight = (Height % 2 == 0) ? Height - 3 : Height - 2;
                     var rippleSize = (_rippleAnimationManager.GetDirection(i) == AnimationDirection.InOutIn) ? (int)(rippleHeight * (0.8d + (0.2d * animationValue))) : rippleHeight;
@@ -138,8 +138,8 @@ namespace MaterialSkin.Controls
                 g.FillPath(brush2, checkmarkPath);
                 g.DrawPath(pen2, checkmarkPath);
 
-                g.FillRectangle(new SolidBrush(Parent.BackColor), _boxOffset + 2, _boxOffset + 2, CHECKBOX_INNER_BOX_SIZE - 1, CHECKBOX_INNER_BOX_SIZE - 1);
-                g.DrawRectangle(new Pen(Parent.BackColor), _boxOffset + 2, _boxOffset + 2, CHECKBOX_INNER_BOX_SIZE - 1, CHECKBOX_INNER_BOX_SIZE - 1);
+                g.FillRectangle(new SolidBrush(Parent.BackColor), _boxOffset + 2, _boxOffset + 2, CheckboxInnerBoxSize - 1, CheckboxInnerBoxSize - 1);
+                g.DrawRectangle(new Pen(Parent.BackColor), _boxOffset + 2, _boxOffset + 2, CheckboxInnerBoxSize - 1, CheckboxInnerBoxSize - 1);
 
                 brush2.Dispose();
                 pen2.Dispose();
@@ -152,7 +152,7 @@ namespace MaterialSkin.Controls
                 else if (Checked)
                 {
                     g.SmoothingMode = SmoothingMode.None;
-                    g.FillRectangle(brush, _boxOffset + 2, _boxOffset + 2, CHECKBOX_INNER_BOX_SIZE, CHECKBOX_INNER_BOX_SIZE);
+                    g.FillRectangle(brush, _boxOffset + 2, _boxOffset + 2, CheckboxInnerBoxSize, CheckboxInnerBoxSize);
                     g.SmoothingMode = SmoothingMode.AntiAlias;
                 }
 
@@ -160,12 +160,12 @@ namespace MaterialSkin.Controls
             }
 
             // draw checkbox text
-            SizeF stringSize = g.MeasureString(Text, SkinManager.ROBOTO_MEDIUM_10);
+            SizeF stringSize = g.MeasureString(Text, SkinManager.RobotoMedium10);
             g.DrawString(
                 Text,
-                SkinManager.ROBOTO_MEDIUM_10,
+                SkinManager.RobotoMedium10,
                 Enabled ? SkinManager.GetPrimaryTextBrush() : SkinManager.GetDisabledOrHintBrush(),
-                _boxOffset + TEXT_OFFSET, Height / 2 - stringSize.Height / 2);
+                _boxOffset + TextOffset, Height / 2 - stringSize.Height / 2);
 
             // dispose used paint objects
             pen.Dispose();
@@ -174,7 +174,7 @@ namespace MaterialSkin.Controls
 
         private Bitmap DrawCheckMarkBitmap()
         {
-            var checkMark = new Bitmap(CHECKBOX_SIZE, CHECKBOX_SIZE);
+            var checkMark = new Bitmap(CheckboxSize, CheckboxSize);
             var g = Graphics.FromImage(checkMark);
 
             // clear everything, transparent
@@ -210,23 +210,23 @@ namespace MaterialSkin.Controls
         protected override void OnCreateControl()
         {
             base.OnCreateControl();
-            Font = SkinManager.ROBOTO_MEDIUM_10;
+            Font = SkinManager.RobotoMedium10;
 
             if (DesignMode) return;
 
-            MouseState = MouseState.OUT;
+            MouseState = MouseState.Out;
             MouseEnter += (sender, args) =>
             {
-                MouseState = MouseState.HOVER;
+                MouseState = MouseState.Hover;
             };
             MouseLeave += (sender, args) =>
             {
                 MouseLocation = new Point(-1, -1);
-                MouseState = MouseState.OUT;
+                MouseState = MouseState.Out;
             };
             MouseDown += (sender, args) =>
             {
-                MouseState = MouseState.DOWN;
+                MouseState = MouseState.Down;
 
                 if (Ripple && args.Button == MouseButtons.Left && IsMouseInCheckArea())
                 {
@@ -236,7 +236,7 @@ namespace MaterialSkin.Controls
             };
             MouseUp += (sender, args) =>
             {
-                MouseState = MouseState.HOVER;
+                MouseState = MouseState.Hover;
                 _rippleAnimationManager.SecondaryIncrement = 0.08;
             };
             MouseMove += (sender, args) =>

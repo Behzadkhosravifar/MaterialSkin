@@ -10,8 +10,8 @@
 
     public enum MouseState
     {
-        HOVER,
-        DOWN,
-        OUT
+        Hover,
+        Down,
+        Out
     }
 }

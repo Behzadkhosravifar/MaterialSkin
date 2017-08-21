@@ -11,6 +11,8 @@ namespace MaterialSkin.Controls
 {
     public class MaterialForm : Form, IMaterialControl
     {
+        #region Properties
+
         [Browsable(false)]
         public int Depth { get; set; }
         [Browsable(false)]
@@ -21,7 +23,7 @@ namespace MaterialSkin.Controls
         public bool Sizable { get; set; }
 
         [DllImport("user32.dll")]
-        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+        public static extern int SendMessage(IntPtr hWnd, int msg, int wParam, int lParam);
 
         [DllImport("user32.dll")]
         public static extern bool ReleaseCapture();
@@ -36,74 +38,91 @@ namespace MaterialSkin.Controls
         public static extern IntPtr MonitorFromWindow(IntPtr hwnd, uint dwFlags);
 
         [DllImport("User32.dll", CharSet = CharSet.Auto)]
-        public static extern bool GetMonitorInfo(HandleRef hmonitor, [In, Out] MONITORINFOEX info);
+        public static extern bool GetMonitorInfo(HandleRef hmonitor, [In, Out] Monitorinfoex info);
 
-        public const int WM_NCLBUTTONDOWN = 0xA1;
-        public const int HT_CAPTION = 0x2;
-        public const int WM_MOUSEMOVE = 0x0200;
-        public const int WM_LBUTTONDOWN = 0x0201;
-        public const int WM_LBUTTONUP = 0x0202;
-        public const int WM_LBUTTONDBLCLK = 0x0203;
-        public const int WM_RBUTTONDOWN = 0x0204;
-        private const int HTBOTTOMLEFT = 16;
-        private const int HTBOTTOMRIGHT = 17;
-        private const int HTLEFT = 10;
-        private const int HTRIGHT = 11;
-        private const int HTBOTTOM = 15;
-        private const int HTTOP = 12;
-        private const int HTTOPLEFT = 13;
-        private const int HTTOPRIGHT = 14;
-        private const int BORDER_WIDTH = 7;
+        public const int WmNclbuttondown = 0xA1;
+        public const int HtCaption = 0x2;
+        public const int WmMousemove = 0x0200;
+        public const int WmLbuttondown = 0x0201;
+        public const int WmLbuttonup = 0x0202;
+        public const int WmLbuttondblclk = 0x0203;
+        public const int WmRbuttondown = 0x0204;
+        private const int Htbottomleft = 16;
+        private const int Htbottomright = 17;
+        private const int Htleft = 10;
+        private const int Htright = 11;
+        private const int Htbottom = 15;
+        private const int Httop = 12;
+        private const int Httopleft = 13;
+        private const int Httopright = 14;
+        private const int BorderWidth = 7;
         private ResizeDirection _resizeDir;
         private ButtonState _buttonState = ButtonState.None;
 
-        private const int WMSZ_TOP = 3;
-        private const int WMSZ_TOPLEFT = 4;
-        private const int WMSZ_TOPRIGHT = 5;
-        private const int WMSZ_LEFT = 1;
-        private const int WMSZ_RIGHT = 2;
-        private const int WMSZ_BOTTOM = 6;
-        private const int WMSZ_BOTTOMLEFT = 7;
-        private const int WMSZ_BOTTOMRIGHT = 8;
+        private const int WmszTop = 3;
+        private const int WmszTopleft = 4;
+        private const int WmszTopright = 5;
+        private const int WmszLeft = 1;
+        private const int WmszRight = 2;
+        private const int WmszBottom = 6;
+        private const int WmszBottomleft = 7;
+        private const int WmszBottomright = 8;
 
         private readonly Dictionary<int, int> _resizingLocationsToCmd = new Dictionary<int, int>
         {
-            {HTTOP,         WMSZ_TOP},
-            {HTTOPLEFT,     WMSZ_TOPLEFT},
-            {HTTOPRIGHT,    WMSZ_TOPRIGHT},
-            {HTLEFT,        WMSZ_LEFT},
-            {HTRIGHT,       WMSZ_RIGHT},
-            {HTBOTTOM,      WMSZ_BOTTOM},
-            {HTBOTTOMLEFT,  WMSZ_BOTTOMLEFT},
-            {HTBOTTOMRIGHT, WMSZ_BOTTOMRIGHT}
+            {Httop,         WmszTop},
+            {Httopleft,     WmszTopleft},
+            {Httopright,    WmszTopright},
+            {Htleft,        WmszLeft},
+            {Htright,       WmszRight},
+            {Htbottom,      WmszBottom},
+            {Htbottomleft,  WmszBottomleft},
+            {Htbottomright, WmszBottomright}
         };
 
-        private const int STATUS_BAR_BUTTON_WIDTH = STATUS_BAR_HEIGHT;
-        private const int STATUS_BAR_HEIGHT = 24;
-        private const int ACTION_BAR_HEIGHT = 40;
+        private const int StatusBarButtonWidth = StatusBarHeight;
+        private const int StatusBarHeight = 24;
+        private const int ActionBarHeight = 40;
 
-        private const uint TPM_LEFTALIGN = 0x0000;
-        private const uint TPM_RETURNCMD = 0x0100;
+        private const uint TpmLeftalign = 0x0000;
+        private const uint TpmReturncmd = 0x0100;
 
-        private const int WM_SYSCOMMAND = 0x0112;
-        private const int WS_MINIMIZEBOX = 0x20000;
-        private const int WS_SYSMENU = 0x00080000;
+        private const int WmSyscommand = 0x0112;
+        private const int WsMinimizebox = 0x20000;
+        private const int WsSysmenu = 0x00080000;
 
-        private const int MONITOR_DEFAULTTONEAREST = 2;
+        private const int MonitorDefaulttonearest = 2;
+
+        private readonly Cursor[] _resizeCursors = { Cursors.SizeNESW, Cursors.SizeWE, Cursors.SizeNWSE, Cursors.SizeWE, Cursors.SizeNS };
+
+        private Rectangle _minButtonBounds;
+        private Rectangle _maxButtonBounds;
+        private Rectangle _xButtonBounds;
+        private Rectangle _actionBarBounds;
+        private Rectangle _statusBarBounds;
+
+        private bool _maximized;
+        private Size _previousSize;
+        private Point _previousLocation;
+        private bool _headerMouseDown;
+
+        #endregion
+
+        #region Classes
 
         [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Auto, Pack = 4)]
-        public class MONITORINFOEX
+        public class Monitorinfoex
         {
-            public int cbSize = Marshal.SizeOf(typeof(MONITORINFOEX));
-            public RECT rcMonitor = new RECT();
-            public RECT rcWork = new RECT();
+            public int cbSize = Marshal.SizeOf(typeof(Monitorinfoex));
+            public Rect rcMonitor = new Rect();
+            public Rect rcWork = new Rect();
             public int dwFlags = 0;
             [MarshalAs(UnmanagedType.ByValArray, SizeConst = 32)]
             public char[] szDevice = new char[32];
         }
 
         [StructLayout(LayoutKind.Sequential)]
-        public struct RECT
+        public struct Rect
         {
             public int left;
             public int top;
@@ -142,18 +161,9 @@ namespace MaterialSkin.Controls
             None
         }
 
-        private readonly Cursor[] _resizeCursors = { Cursors.SizeNESW, Cursors.SizeWE, Cursors.SizeNWSE, Cursors.SizeWE, Cursors.SizeNS };
+        #endregion
 
-        private Rectangle _minButtonBounds;
-        private Rectangle _maxButtonBounds;
-        private Rectangle _xButtonBounds;
-        private Rectangle _actionBarBounds;
-        private Rectangle _statusBarBounds;
-
-        private bool _maximized;
-        private Size _previousSize;
-        private Point _previousLocation;
-        private bool _headerMouseDown;
+        #region Constructors
 
         public MaterialForm()
         {
@@ -167,16 +177,20 @@ namespace MaterialSkin.Controls
             MouseMessageFilter.MouseMove += OnGlobalMouseMove;
         }
 
+        #endregion
+
+        #region Methods
+
         protected override void WndProc(ref Message m)
         {
             base.WndProc(ref m);
             if (DesignMode || IsDisposed) return;
 
-            if (m.Msg == WM_LBUTTONDBLCLK)
+            if (m.Msg == WmLbuttondblclk)
             {
                 MaximizeWindow(!_maximized);
             }
-            else if (m.Msg == WM_MOUSEMOVE && _maximized &&
+            else if (m.Msg == WmMousemove && _maximized &&
                 (_statusBarBounds.Contains(PointToClient(Cursor.Position)) || _actionBarBounds.Contains(PointToClient(Cursor.Position))) &&
                 !(_minButtonBounds.Contains(PointToClient(Cursor.Position)) || _maxButtonBounds.Contains(PointToClient(Cursor.Position)) || _xButtonBounds.Contains(PointToClient(Cursor.Position))))
             {
@@ -197,24 +211,24 @@ namespace MaterialSkin.Controls
 
                     Size = _previousSize;
                     ReleaseCapture();
-                    SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+                    SendMessage(Handle, WmNclbuttondown, HtCaption, 0);
                 }
             }
-            else if (m.Msg == WM_LBUTTONDOWN &&
+            else if (m.Msg == WmLbuttondown &&
                 (_statusBarBounds.Contains(PointToClient(Cursor.Position)) || _actionBarBounds.Contains(PointToClient(Cursor.Position))) &&
                 !(_minButtonBounds.Contains(PointToClient(Cursor.Position)) || _maxButtonBounds.Contains(PointToClient(Cursor.Position)) || _xButtonBounds.Contains(PointToClient(Cursor.Position))))
             {
                 if (!_maximized)
                 {
                     ReleaseCapture();
-                    SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+                    SendMessage(Handle, WmNclbuttondown, HtCaption, 0);
                 }
                 else
                 {
                     _headerMouseDown = true;
                 }
             }
-            else if (m.Msg == WM_RBUTTONDOWN)
+            else if (m.Msg == WmRbuttondown)
             {
                 Point cursorPos = PointToClient(Cursor.Position);
 
@@ -222,13 +236,13 @@ namespace MaterialSkin.Controls
                     !_maxButtonBounds.Contains(cursorPos) && !_xButtonBounds.Contains(cursorPos))
                 {
                     // Show default system menu when right clicking titlebar
-                    var id = TrackPopupMenuEx(GetSystemMenu(Handle, false), TPM_LEFTALIGN | TPM_RETURNCMD, Cursor.Position.X, Cursor.Position.Y, Handle, IntPtr.Zero);
+                    var id = TrackPopupMenuEx(GetSystemMenu(Handle, false), TpmLeftalign | TpmReturncmd, Cursor.Position.X, Cursor.Position.Y, Handle, IntPtr.Zero);
 
                     // Pass the command as a WM_SYSCOMMAND message
-                    SendMessage(Handle, WM_SYSCOMMAND, id, 0);
+                    SendMessage(Handle, WmSyscommand, id, 0);
                 }
             }
-            else if (m.Msg == WM_NCLBUTTONDOWN)
+            else if (m.Msg == WmNclbuttondown)
             {
                 // This re-enables resizing by letting the application know when the
                 // user is trying to resize a side. This is disabled by default when using WS_SYSMENU.
@@ -241,9 +255,9 @@ namespace MaterialSkin.Controls
                     bFlag = (byte)_resizingLocationsToCmd[(int)m.WParam];
 
                 if (bFlag != 0)
-                    SendMessage(Handle, WM_SYSCOMMAND, 0xF000 | bFlag, (int)m.LParam);
+                    SendMessage(Handle, WmSyscommand, 0xF000 | bFlag, (int)m.LParam);
             }
-            else if (m.Msg == WM_LBUTTONUP)
+            else if (m.Msg == WmLbuttonup)
             {
                 _headerMouseDown = false;
             }
@@ -256,7 +270,7 @@ namespace MaterialSkin.Controls
                 var par = base.CreateParams;
                 // WS_SYSMENU: Trigger the creation of the system menu
                 // WS_MINIMIZEBOX: Allow minimizing from taskbar
-                par.Style = par.Style | WS_MINIMIZEBOX | WS_SYSMENU; // Turn on the WS_MINIMIZEBOX style flag
+                par.Style = par.Style | WsMinimizebox | WsSysmenu; // Turn on the WS_MINIMIZEBOX style flag
                 return par;
             }
         }
@@ -290,27 +304,27 @@ namespace MaterialSkin.Controls
                 //True if the mouse is hovering over a child control
                 var isChildUnderMouse = GetChildAtPoint(e.Location) != null;
 
-                if (e.Location.X < BORDER_WIDTH && e.Location.Y > Height - BORDER_WIDTH && !isChildUnderMouse && !_maximized)
+                if (e.Location.X < BorderWidth && e.Location.Y > Height - BorderWidth && !isChildUnderMouse && !_maximized)
                 {
                     _resizeDir = ResizeDirection.BottomLeft;
                     Cursor = Cursors.SizeNESW;
                 }
-                else if (e.Location.X < BORDER_WIDTH && !isChildUnderMouse && !_maximized)
+                else if (e.Location.X < BorderWidth && !isChildUnderMouse && !_maximized)
                 {
                     _resizeDir = ResizeDirection.Left;
                     Cursor = Cursors.SizeWE;
                 }
-                else if (e.Location.X > Width - BORDER_WIDTH && e.Location.Y > Height - BORDER_WIDTH && !isChildUnderMouse && !_maximized)
+                else if (e.Location.X > Width - BorderWidth && e.Location.Y > Height - BorderWidth && !isChildUnderMouse && !_maximized)
                 {
                     _resizeDir = ResizeDirection.BottomRight;
                     Cursor = Cursors.SizeNWSE;
                 }
-                else if (e.Location.X > Width - BORDER_WIDTH && !isChildUnderMouse && !_maximized)
+                else if (e.Location.X > Width - BorderWidth && !isChildUnderMouse && !_maximized)
                 {
                     _resizeDir = ResizeDirection.Right;
                     Cursor = Cursors.SizeWE;
                 }
-                else if (e.Location.Y > Height - BORDER_WIDTH && !isChildUnderMouse && !_maximized)
+                else if (e.Location.Y > Height - BorderWidth && !isChildUnderMouse && !_maximized)
                 {
                     _resizeDir = ResizeDirection.Bottom;
                     Cursor = Cursors.SizeNS;
@@ -404,8 +418,8 @@ namespace MaterialSkin.Controls
 
             if (maximize)
             {
-                var monitorHandle = MonitorFromWindow(Handle, MONITOR_DEFAULTTONEAREST);
-                var monitorInfo = new MONITORINFOEX();
+                var monitorHandle = MonitorFromWindow(Handle, MonitorDefaulttonearest);
+                var monitorInfo = new Monitorinfoex();
                 GetMonitorInfo(new HandleRef(null, monitorHandle), monitorInfo);
                 _previousSize = Size;
                 _previousLocation = Location;
@@ -436,26 +450,26 @@ namespace MaterialSkin.Controls
             switch (direction)
             {
                 case ResizeDirection.BottomLeft:
-                    dir = HTBOTTOMLEFT;
+                    dir = Htbottomleft;
                     break;
                 case ResizeDirection.Left:
-                    dir = HTLEFT;
+                    dir = Htleft;
                     break;
                 case ResizeDirection.Right:
-                    dir = HTRIGHT;
+                    dir = Htright;
                     break;
                 case ResizeDirection.BottomRight:
-                    dir = HTBOTTOMRIGHT;
+                    dir = Htbottomright;
                     break;
                 case ResizeDirection.Bottom:
-                    dir = HTBOTTOM;
+                    dir = Htbottom;
                     break;
             }
 
             ReleaseCapture();
             if (dir != -1)
             {
-                SendMessage(Handle, WM_NCLBUTTONDOWN, dir, 0);
+                SendMessage(Handle, WmNclbuttondown, dir, 0);
             }
         }
 
@@ -463,11 +477,11 @@ namespace MaterialSkin.Controls
         {
             base.OnResize(e);
 
-            _minButtonBounds = new Rectangle((Width - SkinManager.FORM_PADDING / 2) - 3 * STATUS_BAR_BUTTON_WIDTH, 0, STATUS_BAR_BUTTON_WIDTH, STATUS_BAR_HEIGHT);
-            _maxButtonBounds = new Rectangle((Width - SkinManager.FORM_PADDING / 2) - 2 * STATUS_BAR_BUTTON_WIDTH, 0, STATUS_BAR_BUTTON_WIDTH, STATUS_BAR_HEIGHT);
-            _xButtonBounds = new Rectangle((Width - SkinManager.FORM_PADDING / 2) - STATUS_BAR_BUTTON_WIDTH, 0, STATUS_BAR_BUTTON_WIDTH, STATUS_BAR_HEIGHT);
-            _statusBarBounds = new Rectangle(0, 0, Width, STATUS_BAR_HEIGHT);
-            _actionBarBounds = new Rectangle(0, STATUS_BAR_HEIGHT, Width, ACTION_BAR_HEIGHT);
+            _minButtonBounds = new Rectangle((Width - SkinManager.FormPadding / 2) - 3 * StatusBarButtonWidth, 0, StatusBarButtonWidth, StatusBarHeight);
+            _maxButtonBounds = new Rectangle((Width - SkinManager.FormPadding / 2) - 2 * StatusBarButtonWidth, 0, StatusBarButtonWidth, StatusBarHeight);
+            _xButtonBounds = new Rectangle((Width - SkinManager.FormPadding / 2) - StatusBarButtonWidth, 0, StatusBarButtonWidth, StatusBarHeight);
+            _statusBarBounds = new Rectangle(0, 0, Width, StatusBarHeight);
+            _actionBarBounds = new Rectangle(0, StatusBarHeight, Width, ActionBarHeight);
         }
 
         protected override void OnPaint(PaintEventArgs e)
@@ -512,7 +526,7 @@ namespace MaterialSkin.Controls
             if (_buttonState == ButtonState.XDown && ControlBox)
                 g.FillRectangle(downBrush, _xButtonBounds);
 
-            using (var formButtonsPen = new Pen(SkinManager.ACTION_BAR_TEXT_SECONDARY, 2))
+            using (var formButtonsPen = new Pen(SkinManager.ActionBarTextSecondary, 2))
             {
                 // Minimize button.
                 if (showMin)
@@ -562,20 +576,22 @@ namespace MaterialSkin.Controls
             }
 
             //Form title
-            g.DrawString(Text, SkinManager.ROBOTO_MEDIUM_12, SkinManager.ColorScheme.TextBrush, new Rectangle(SkinManager.FORM_PADDING, STATUS_BAR_HEIGHT, Width, ACTION_BAR_HEIGHT), new StringFormat { LineAlignment = StringAlignment.Center });
+            g.DrawString(Text, SkinManager.RobotoMedium12, SkinManager.ColorScheme.TextBrush, new Rectangle(SkinManager.FormPadding, StatusBarHeight, Width, ActionBarHeight), new StringFormat { LineAlignment = StringAlignment.Center });
         }
+
+        #endregion
     }
 
     public class MouseMessageFilter : IMessageFilter
     {
-        private const int WM_MOUSEMOVE = 0x0200;
+        private const int WmMousemove = 0x0200;
 
         public static event MouseEventHandler MouseMove;
 
         public bool PreFilterMessage(ref Message m)
         {
 
-            if (m.Msg == WM_MOUSEMOVE)
+            if (m.Msg == WmMousemove)
             {
                 if (MouseMove != null)
                 {

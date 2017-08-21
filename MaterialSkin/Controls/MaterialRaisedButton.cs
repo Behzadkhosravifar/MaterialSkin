@@ -56,7 +56,7 @@ namespace MaterialSkin.Controls
             set
             {
                 base.Text = value;
-                _textSize = CreateGraphics().MeasureString(value.ToUpper(), SkinManager.ROBOTO_MEDIUM_10);
+                _textSize = CreateGraphics().MeasureString(value.ToUpper(), SkinManager.RobotoMedium10);
                 if (AutoSize)
                     Size = GetPreferredSize();
                 Invalidate();
@@ -132,7 +132,7 @@ namespace MaterialSkin.Controls
 
             g.DrawString(
                 Text.ToUpper(),
-                SkinManager.ROBOTO_MEDIUM_10,
+                SkinManager.RobotoMedium10,
                 SkinManager.GetRaisedButtonTextBrush(Primary),
                 textRect,
                 new StringFormat { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });

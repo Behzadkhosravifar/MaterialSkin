@@ -7,22 +7,22 @@ namespace MaterialSkinExample
 {
     public partial class MainForm : MaterialForm
     {
-        private readonly MaterialSkinManager materialSkinManager;
+        private readonly MaterialSkinManager _materialSkinManager;
         public MainForm()
         {
             InitializeComponent();
 
             // Initialize MaterialSkinManager
-            materialSkinManager = MaterialSkinManager.Instance;
-            materialSkinManager.AddFormToManage(this);
-			materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
-			materialSkinManager.ColorScheme = new ColorScheme(Primary.BlueGrey800, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightBlue200, TextShade.WHITE);
+            _materialSkinManager = MaterialSkinManager.Instance;
+            _materialSkinManager.AddFormToManage(this);
+			_materialSkinManager.Theme = MaterialSkinManager.Themes.Light;
+			_materialSkinManager.ColorScheme = new ColorScheme(Primary.BlueGrey800, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightBlue200, TextShade.White);
 
 			// Add dummy data to the listview
-	        seedListView();
+	        SeedListView();
         }
 
-	    private void seedListView()
+	    private void SeedListView()
 	    {
 			//Define
 			var data = new[]
@@ -44,28 +44,31 @@ namespace MaterialSkinExample
 
         private void materialButton1_Click(object sender, EventArgs e)
         {
-            materialSkinManager.Theme = materialSkinManager.Theme == MaterialSkinManager.Themes.DARK ? MaterialSkinManager.Themes.LIGHT : MaterialSkinManager.Themes.DARK;
+            _materialSkinManager.Theme = _materialSkinManager.Theme == MaterialSkinManager.Themes.Dark ? MaterialSkinManager.Themes.Light : MaterialSkinManager.Themes.Dark;
         }
 
-	    private int colorSchemeIndex;
+	    private int _colorSchemeIndex;
         private void materialRaisedButton1_Click(object sender, EventArgs e)
         {
-	        colorSchemeIndex++;
-	        if (colorSchemeIndex > 2) colorSchemeIndex = 0;
+	        _colorSchemeIndex++;
+	        if (_colorSchemeIndex > 3) _colorSchemeIndex = 0;
 
 			//These are just example color schemes
-	        switch (colorSchemeIndex)
+	        switch (_colorSchemeIndex)
 	        {
 				case 0:
-					materialSkinManager.ColorScheme = new ColorScheme(Primary.BlueGrey800, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightBlue200, TextShade.WHITE);
+					_materialSkinManager.ColorScheme = new ColorScheme(Primary.BlueGrey800, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightBlue200, TextShade.White);
 			        break;
 				case 1:
-					materialSkinManager.ColorScheme = new ColorScheme(Primary.Indigo500, Primary.Indigo700, Primary.Indigo100, Accent.Pink200, TextShade.WHITE);
+					_materialSkinManager.ColorScheme = new ColorScheme(Primary.Indigo500, Primary.Indigo700, Primary.Indigo100, Accent.Pink200, TextShade.White);
 			        break;
 				case 2:
-					materialSkinManager.ColorScheme = new ColorScheme(Primary.Green600, Primary.Green700, Primary.Green200, Accent.Red100, TextShade.WHITE);
+					_materialSkinManager.ColorScheme = new ColorScheme(Primary.Green600, Primary.Green700, Primary.Green200, Accent.Red100, TextShade.White);
 					break;
-	        }
+                case 3:
+                    _materialSkinManager.ColorScheme = new ColorScheme(Primary.EasternBlue700, Primary.EasternBlue500, Primary.EasternBlue500, Accent.Green400, TextShade.White);
+                    break;
+            }
         }
 
         private void materialRaisedButton2_Click(object sender, EventArgs e)

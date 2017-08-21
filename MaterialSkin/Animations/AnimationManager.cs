@@ -24,8 +24,8 @@ namespace MaterialSkin.Animations
         private readonly List<AnimationDirection> _animationDirections;
         private readonly List<object[]> _animationDatas;
 
-        private const double MIN_VALUE = 0.00;
-        private const double MAX_VALUE = 1.00;
+        private const double MinValue = 0.00;
+        private const double MaxValue = 1.00;
 
         private readonly Timer _animationTimer = new Timer { Interval = 5, Enabled = false };
 
@@ -64,22 +64,22 @@ namespace MaterialSkin.Animations
 
                 if (!Singular)
                 {
-                    if ((_animationDirections[i] == AnimationDirection.InOutIn && _animationProgresses[i] == MAX_VALUE))
+                    if ((_animationDirections[i] == AnimationDirection.InOutIn && _animationProgresses[i] == MaxValue))
                     {
                         _animationDirections[i] = AnimationDirection.InOutOut;
                     }
-                    else if ((_animationDirections[i] == AnimationDirection.InOutRepeatingIn && _animationProgresses[i] == MIN_VALUE))
+                    else if ((_animationDirections[i] == AnimationDirection.InOutRepeatingIn && _animationProgresses[i] == MinValue))
                     {
                         _animationDirections[i] = AnimationDirection.InOutRepeatingOut;
                     }
-                    else if ((_animationDirections[i] == AnimationDirection.InOutRepeatingOut && _animationProgresses[i] == MIN_VALUE))
+                    else if ((_animationDirections[i] == AnimationDirection.InOutRepeatingOut && _animationProgresses[i] == MinValue))
                     {
                         _animationDirections[i] = AnimationDirection.InOutRepeatingIn;
                     }
                     else if (
-                        (_animationDirections[i] == AnimationDirection.In && _animationProgresses[i] == MAX_VALUE) ||
-                        (_animationDirections[i] == AnimationDirection.Out && _animationProgresses[i] == MIN_VALUE) ||
-                        (_animationDirections[i] == AnimationDirection.InOutOut && _animationProgresses[i] == MIN_VALUE))
+                        (_animationDirections[i] == AnimationDirection.In && _animationProgresses[i] == MaxValue) ||
+                        (_animationDirections[i] == AnimationDirection.Out && _animationProgresses[i] == MinValue) ||
+                        (_animationDirections[i] == AnimationDirection.InOutOut && _animationProgresses[i] == MinValue))
                     {
                         _animationProgresses.RemoveAt(i);
                         _animationSources.RemoveAt(i);
@@ -89,15 +89,15 @@ namespace MaterialSkin.Animations
                 }
                 else
                 {
-                    if ((_animationDirections[i] == AnimationDirection.InOutIn && _animationProgresses[i] == MAX_VALUE))
+                    if ((_animationDirections[i] == AnimationDirection.InOutIn && _animationProgresses[i] == MaxValue))
                     {
                         _animationDirections[i] = AnimationDirection.InOutOut;
                     }
-                    else if ((_animationDirections[i] == AnimationDirection.InOutRepeatingIn && _animationProgresses[i] == MAX_VALUE))
+                    else if ((_animationDirections[i] == AnimationDirection.InOutRepeatingIn && _animationProgresses[i] == MaxValue))
                     {
                         _animationDirections[i] = AnimationDirection.InOutRepeatingOut;
                     }
-                    else if ((_animationDirections[i] == AnimationDirection.InOutRepeatingOut && _animationProgresses[i] == MIN_VALUE))
+                    else if ((_animationDirections[i] == AnimationDirection.InOutRepeatingOut && _animationProgresses[i] == MinValue))
                     {
                         _animationDirections[i] = AnimationDirection.InOutRepeatingIn;
                     }
@@ -146,12 +146,12 @@ namespace MaterialSkin.Animations
                         case AnimationDirection.InOutRepeatingIn:
                         case AnimationDirection.InOutIn:
                         case AnimationDirection.In:
-                            _animationProgresses.Add(MIN_VALUE);
+                            _animationProgresses.Add(MinValue);
                             break;
                         case AnimationDirection.InOutRepeatingOut:
                         case AnimationDirection.InOutOut:
                         case AnimationDirection.Out:
-                            _animationProgresses.Add(MAX_VALUE);
+                            _animationProgresses.Add(MaxValue);
                             break;
                         default:
                             throw new Exception("Invalid AnimationDirection");
@@ -194,17 +194,17 @@ namespace MaterialSkin.Animations
         private void IncrementProgress(int index)
         {
             _animationProgresses[index] += Increment;
-            if (_animationProgresses[index] > MAX_VALUE)
+            if (_animationProgresses[index] > MaxValue)
             {
-                _animationProgresses[index] = MAX_VALUE;
+                _animationProgresses[index] = MaxValue;
 
                 for (int i = 0; i < GetAnimationCount(); i++)
                 {
                     if (_animationDirections[i] == AnimationDirection.InOutIn) return;
                     if (_animationDirections[i] == AnimationDirection.InOutRepeatingIn) return;
                     if (_animationDirections[i] == AnimationDirection.InOutRepeatingOut) return;
-                    if (_animationDirections[i] == AnimationDirection.InOutOut && _animationProgresses[i] != MAX_VALUE) return;
-                    if (_animationDirections[i] == AnimationDirection.In && _animationProgresses[i] != MAX_VALUE) return;
+                    if (_animationDirections[i] == AnimationDirection.InOutOut && _animationProgresses[i] != MaxValue) return;
+                    if (_animationDirections[i] == AnimationDirection.In && _animationProgresses[i] != MaxValue) return;
                 }
 
                 _animationTimer.Stop();
@@ -215,17 +215,17 @@ namespace MaterialSkin.Animations
         private void DecrementProgress(int index)
         {
             _animationProgresses[index] -= (_animationDirections[index] == AnimationDirection.InOutOut || _animationDirections[index] == AnimationDirection.InOutRepeatingOut) ? SecondaryIncrement : Increment;
-            if (_animationProgresses[index] < MIN_VALUE)
+            if (_animationProgresses[index] < MinValue)
             {
-                _animationProgresses[index] = MIN_VALUE;
+                _animationProgresses[index] = MinValue;
 
                 for (var i = 0; i < GetAnimationCount(); i++)
                 {
                     if (_animationDirections[i] == AnimationDirection.InOutIn) return;
                     if (_animationDirections[i] == AnimationDirection.InOutRepeatingIn) return;
                     if (_animationDirections[i] == AnimationDirection.InOutRepeatingOut) return;
-                    if (_animationDirections[i] == AnimationDirection.InOutOut && _animationProgresses[i] != MIN_VALUE) return;
-                    if (_animationDirections[i] == AnimationDirection.Out && _animationProgresses[i] != MIN_VALUE) return;
+                    if (_animationDirections[i] == AnimationDirection.InOutOut && _animationProgresses[i] != MinValue) return;
+                    if (_animationDirections[i] == AnimationDirection.Out && _animationProgresses[i] != MinValue) return;
                 }
 
                 _animationTimer.Stop();

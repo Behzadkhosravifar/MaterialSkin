@@ -108,7 +108,7 @@ namespace MaterialSkin.Controls
             var textRect = new Rectangle(24, itemRect.Y, itemRect.Width - (24 + 16), itemRect.Height);
             g.DrawString(
                 e.Text,
-                SkinManager.ROBOTO_MEDIUM_10,
+                SkinManager.RobotoMedium10,
                 e.Item.Enabled ? SkinManager.GetPrimaryTextBrush() : SkinManager.GetDisabledOrHintBrush(),
                 textRect,
                 new StringFormat { LineAlignment = StringAlignment.Center });
@@ -170,7 +170,7 @@ namespace MaterialSkin.Controls
         protected override void OnRenderArrow(ToolStripArrowRenderEventArgs e)
         {
             var g = e.Graphics;
-            const int ARROW_SIZE = 4;
+            const int arrowSize = 4;
 
             var arrowMiddle = new Point(e.ArrowRectangle.X + e.ArrowRectangle.Width / 2, e.ArrowRectangle.Y + e.ArrowRectangle.Height / 2);
             var arrowBrush = e.Item.Enabled ? SkinManager.GetPrimaryTextBrush() : SkinManager.GetDisabledOrHintBrush();
@@ -178,9 +178,9 @@ namespace MaterialSkin.Controls
             {
                 arrowPath.AddLines(
                     new[] {
-                        new Point(arrowMiddle.X - ARROW_SIZE, arrowMiddle.Y - ARROW_SIZE),
+                        new Point(arrowMiddle.X - arrowSize, arrowMiddle.Y - arrowSize),
                         new Point(arrowMiddle.X, arrowMiddle.Y),
-                        new Point(arrowMiddle.X - ARROW_SIZE, arrowMiddle.Y + ARROW_SIZE) });
+                        new Point(arrowMiddle.X - arrowSize, arrowMiddle.Y + arrowSize) });
                 arrowPath.CloseFigure();
 
                 g.FillPath(arrowBrush, arrowPath);

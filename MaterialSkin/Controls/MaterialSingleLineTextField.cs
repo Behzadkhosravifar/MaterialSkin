@@ -124,7 +124,7 @@ namespace MaterialSkin.Controls
             }
         }
 
-        public new event UICuesEventHandler ChangeUICues
+        public new event UICuesEventHandler ChangeUiCues
         {
             add
             {
@@ -957,7 +957,7 @@ namespace MaterialSkin.Controls
             _baseTextBox = new BaseTextBox
             {
                 BorderStyle = BorderStyle.None,
-                Font = SkinManager.ROBOTO_REGULAR_11,
+                Font = SkinManager.RobotoRegular11,
                 ForeColor = SkinManager.GetPrimaryTextColor(),
                 Location = new Point(0, 0),
                 Width = Width,
@@ -1032,19 +1032,19 @@ namespace MaterialSkin.Controls
             [DllImport("user32.dll", CharSet = CharSet.Auto)]
             private static extern IntPtr SendMessage(IntPtr hWnd, int msg, int wParam, string lParam);
 
-            private const int EM_SETCUEBANNER = 0x1501;
+            private const int EmSetcuebanner = 0x1501;
             private const char EmptyChar = (char)0;
             private const char VisualStylePasswordChar = '\u25CF';
             private const char NonVisualStylePasswordChar = '\u002A';
 
-            private string hint = string.Empty;
+            private string _hint = string.Empty;
             public string Hint
             {
-                get { return hint; }
+                get { return _hint; }
                 set
                 {
-                    hint = value;
-                    SendMessage(Handle, EM_SETCUEBANNER, (int)IntPtr.Zero, Hint);
+                    _hint = value;
+                    SendMessage(Handle, EmSetcuebanner, (int)IntPtr.Zero, Hint);
                 }
             }
 
