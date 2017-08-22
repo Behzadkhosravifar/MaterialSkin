@@ -10,6 +10,8 @@ namespace MaterialSkin.Controls
 {
     public class MaterialCheckBox : CheckBox, IMaterialControl
     {
+        #region Properties
+
         [Browsable(false)]
         public int Depth { get; set; }
         [Browsable(false)]
@@ -40,13 +42,15 @@ namespace MaterialSkin.Controls
 
         private readonly AnimationManager _animationManager;
         private readonly AnimationManager _rippleAnimationManager;
-
         private const int CheckboxSize = 18;
         private const int CheckboxSizeHalf = CheckboxSize / 2;
         private const int CheckboxInnerBoxSize = CheckboxSize - 4;
-
+        private static readonly Point[] CheckmarkLine = { new Point(3, 8), new Point(7, 12), new Point(14, 5) };
+        private const int TextOffset = 22;
         private int _boxOffset;
         private Rectangle _boxRectangle;
+
+        #endregion
 
         public MaterialCheckBox()
         {
@@ -73,6 +77,8 @@ namespace MaterialSkin.Controls
             MouseLocation = new Point(-1, -1);
         }
 
+
+
         protected override void OnSizeChanged(EventArgs e)
         {
             base.OnSizeChanged(e);
@@ -86,9 +92,7 @@ namespace MaterialSkin.Controls
             var w = _boxOffset + CheckboxSize + 2 + (int)CreateGraphics().MeasureString(Text, SkinManager.NazanintarMedium11).Width;
             return Ripple ? new Size(w, 30) : new Size(w, 20);
         }
-
-        private static readonly Point[] CheckmarkLine = { new Point(3, 8), new Point(7, 12), new Point(14, 5) };
-        private const int TextOffset = 22;
+        
         protected override void OnPaint(PaintEventArgs pevent)
         {
             var g = pevent.Graphics;
