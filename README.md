@@ -34,7 +34,7 @@ More... | No | No | No | No
 
 **1. Add the library to your project**
 
-  You can do this on multiple ways. The easiest way would be adding the [NuGet Package](https://www.nuget.org/packages/MaterialSkin/). Right click on your project and click 'Manage NuGet Packages...'. Search for 'MaterialSkin' and click on install. Once installed the library will be included in your project references. (Or install it through the package manager console: PM> Install-Package MaterialSkin)
+  You can do this on multiple ways. The easiest way would be adding the [NuGet Package](https://www.nuget.org/packages/PersianMaterialSkin/). Right click on your project and click 'Manage NuGet Packages...'. Search for 'PerisanMaterialSkin' and click on install. Once installed the library will be included in your project references. (Or install it through the package manager console: PM> Install-Package MaterialSkin)
 
 Another way of doing this step would be cloning the project from GitHub, compiling the library yourself and adding it as a reference.
   
