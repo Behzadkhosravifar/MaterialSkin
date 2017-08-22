@@ -142,7 +142,7 @@ namespace MaterialSkinExample
             this.materialRadioButton4.Cursor = System.Windows.Forms.Cursors.Default;
             this.materialRadioButton4.Depth = 0;
             this.materialRadioButton4.Enabled = false;
-            this.materialRadioButton4.Font = new System.Drawing.Font("Roboto", 11F);
+            this.materialRadioButton4.Font = new System.Drawing.Font("Nazanintar", 11F);
             this.materialRadioButton4.Location = new System.Drawing.Point(0, 98);
             this.materialRadioButton4.Margin = new System.Windows.Forms.Padding(0);
             this.materialRadioButton4.MouseLocation = new System.Drawing.Point(-1, -1);
@@ -160,7 +160,7 @@ namespace MaterialSkinExample
             this.materialLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.materialLabel1.Depth = 0;
-            this.materialLabel1.Font = new System.Drawing.Font("Roboto", 11F);
+            this.materialLabel1.Font = new System.Drawing.Font("Nazanintar", 11F);
             this.materialLabel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.materialLabel1.Location = new System.Drawing.Point(3, 117);
             this.materialLabel1.MouseState = MaterialSkin.MouseState.Hover;
@@ -174,7 +174,7 @@ namespace MaterialSkinExample
             this.materialRadioButton3.AutoSize = true;
             this.materialRadioButton3.Cursor = System.Windows.Forms.Cursors.Default;
             this.materialRadioButton3.Depth = 0;
-            this.materialRadioButton3.Font = new System.Drawing.Font("Roboto", 11F);
+            this.materialRadioButton3.Font = new System.Drawing.Font("Nazanintar", 11F);
             this.materialRadioButton3.Location = new System.Drawing.Point(0, 68);
             this.materialRadioButton3.Margin = new System.Windows.Forms.Padding(0);
             this.materialRadioButton3.MouseLocation = new System.Drawing.Point(-1, -1);
@@ -191,7 +191,7 @@ namespace MaterialSkinExample
             this.materialRadioButton2.AutoSize = true;
             this.materialRadioButton2.Cursor = System.Windows.Forms.Cursors.Default;
             this.materialRadioButton2.Depth = 0;
-            this.materialRadioButton2.Font = new System.Drawing.Font("Roboto", 11F);
+            this.materialRadioButton2.Font = new System.Drawing.Font("Nazanintar", 11F);
             this.materialRadioButton2.Location = new System.Drawing.Point(0, 38);
             this.materialRadioButton2.Margin = new System.Windows.Forms.Padding(0);
             this.materialRadioButton2.MouseLocation = new System.Drawing.Point(-1, -1);
@@ -207,7 +207,7 @@ namespace MaterialSkinExample
             // 
             this.materialCheckbox4.AutoSize = true;
             this.materialCheckbox4.Depth = 0;
-            this.materialCheckbox4.Font = new System.Drawing.Font("Roboto", 11F);
+            this.materialCheckbox4.Font = new System.Drawing.Font("Nazanintar", 11F);
             this.materialCheckbox4.Location = new System.Drawing.Point(0, 98);
             this.materialCheckbox4.Margin = new System.Windows.Forms.Padding(0);
             this.materialCheckbox4.MouseLocation = new System.Drawing.Point(-1, -1);
@@ -224,7 +224,7 @@ namespace MaterialSkinExample
             this.materialCheckbox3.AutoSize = true;
             this.materialCheckbox3.Cursor = System.Windows.Forms.Cursors.Default;
             this.materialCheckbox3.Depth = 0;
-            this.materialCheckbox3.Font = new System.Drawing.Font("Roboto", 11F);
+            this.materialCheckbox3.Font = new System.Drawing.Font("Nazanintar", 11F);
             this.materialCheckbox3.Location = new System.Drawing.Point(0, 68);
             this.materialCheckbox3.Margin = new System.Windows.Forms.Padding(0);
             this.materialCheckbox3.MouseLocation = new System.Drawing.Point(-1, -1);
@@ -242,7 +242,7 @@ namespace MaterialSkinExample
             this.materialCheckbox2.Checked = true;
             this.materialCheckbox2.CheckState = System.Windows.Forms.CheckState.Checked;
             this.materialCheckbox2.Depth = 0;
-            this.materialCheckbox2.Font = new System.Drawing.Font("Roboto", 11F);
+            this.materialCheckbox2.Font = new System.Drawing.Font("Nazanintar", 11F);
             this.materialCheckbox2.Location = new System.Drawing.Point(0, 38);
             this.materialCheckbox2.Margin = new System.Windows.Forms.Padding(0);
             this.materialCheckbox2.MouseLocation = new System.Drawing.Point(-1, -1);
@@ -261,7 +261,7 @@ namespace MaterialSkinExample
             this.materialCheckbox1.CheckState = System.Windows.Forms.CheckState.Checked;
             this.materialCheckbox1.Cursor = System.Windows.Forms.Cursors.Default;
             this.materialCheckbox1.Depth = 0;
-            this.materialCheckbox1.Font = new System.Drawing.Font("Roboto", 11F);
+            this.materialCheckbox1.Font = new System.Drawing.Font("Nazanintar", 11F);
             this.materialCheckbox1.Location = new System.Drawing.Point(0, 8);
             this.materialCheckbox1.Margin = new System.Windows.Forms.Padding(0);
             this.materialCheckbox1.MouseLocation = new System.Drawing.Point(-1, -1);
@@ -288,7 +288,7 @@ namespace MaterialSkinExample
             this.materialSingleLineTextField2.SelectedText = "";
             this.materialSingleLineTextField2.SelectionLength = 0;
             this.materialSingleLineTextField2.SelectionStart = 0;
-            this.materialSingleLineTextField2.Size = new System.Drawing.Size(574, 23);
+            this.materialSingleLineTextField2.Size = new System.Drawing.Size(574, 30);
             this.materialSingleLineTextField2.TabIndex = 3;
             this.materialSingleLineTextField2.TabStop = false;
             this.materialSingleLineTextField2.TextAlignment = System.Windows.Forms.HorizontalAlignment.Left;
@@ -309,7 +309,7 @@ namespace MaterialSkinExample
             this.materialSingleLineTextField1.SelectedText = "";
             this.materialSingleLineTextField1.SelectionLength = 0;
             this.materialSingleLineTextField1.SelectionStart = 0;
-            this.materialSingleLineTextField1.Size = new System.Drawing.Size(574, 23);
+            this.materialSingleLineTextField1.Size = new System.Drawing.Size(574, 30);
             this.materialSingleLineTextField1.TabIndex = 2;
             this.materialSingleLineTextField1.TabStop = false;
             this.materialSingleLineTextField1.TextAlignment = System.Windows.Forms.HorizontalAlignment.Center;
@@ -318,15 +318,14 @@ namespace MaterialSkinExample
             // materialButton1
             // 
             this.materialButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.materialButton1.AutoSize = true;
             this.materialButton1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.materialButton1.Depth = 0;
             this.materialButton1.Icon = null;
-            this.materialButton1.Location = new System.Drawing.Point(261, 185);
+            this.materialButton1.Location = new System.Drawing.Point(261, 171);
             this.materialButton1.MouseState = MaterialSkin.MouseState.Hover;
             this.materialButton1.Name = "materialButton1";
             this.materialButton1.Primary = true;
-            this.materialButton1.Size = new System.Drawing.Size(127, 36);
+            this.materialButton1.Size = new System.Drawing.Size(127, 53);
             this.materialButton1.TabIndex = 0;
             this.materialButton1.Text = "Change Theme";
             this.materialButton1.UseVisualStyleBackColor = true;
@@ -337,7 +336,7 @@ namespace MaterialSkinExample
             this.materialRadioButton1.AutoSize = true;
             this.materialRadioButton1.Cursor = System.Windows.Forms.Cursors.Default;
             this.materialRadioButton1.Depth = 0;
-            this.materialRadioButton1.Font = new System.Drawing.Font("Roboto", 11F);
+            this.materialRadioButton1.Font = new System.Drawing.Font("Nazanintar", 11F);
             this.materialRadioButton1.Location = new System.Drawing.Point(0, 8);
             this.materialRadioButton1.Margin = new System.Windows.Forms.Padding(0);
             this.materialRadioButton1.MouseLocation = new System.Drawing.Point(-1, -1);
@@ -412,7 +411,7 @@ namespace MaterialSkinExample
             this.materialSingleLineTextField3.SelectedText = "";
             this.materialSingleLineTextField3.SelectionLength = 0;
             this.materialSingleLineTextField3.SelectionStart = 0;
-            this.materialSingleLineTextField3.Size = new System.Drawing.Size(577, 23);
+            this.materialSingleLineTextField3.Size = new System.Drawing.Size(577, 30);
             this.materialSingleLineTextField3.TabIndex = 4;
             this.materialSingleLineTextField3.TabStop = false;
             this.materialSingleLineTextField3.TextAlignment = System.Windows.Forms.HorizontalAlignment.Right;
@@ -422,15 +421,14 @@ namespace MaterialSkinExample
             // materialRaisedButton1
             // 
             this.materialRaisedButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.materialRaisedButton1.AutoSize = true;
             this.materialRaisedButton1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.materialRaisedButton1.Depth = 0;
             this.materialRaisedButton1.Icon = null;
-            this.materialRaisedButton1.Location = new System.Drawing.Point(392, 185);
+            this.materialRaisedButton1.Location = new System.Drawing.Point(392, 171);
             this.materialRaisedButton1.MouseState = MaterialSkin.MouseState.Hover;
             this.materialRaisedButton1.Name = "materialRaisedButton1";
             this.materialRaisedButton1.Primary = true;
-            this.materialRaisedButton1.Size = new System.Drawing.Size(182, 36);
+            this.materialRaisedButton1.Size = new System.Drawing.Size(182, 53);
             this.materialRaisedButton1.TabIndex = 21;
             this.materialRaisedButton1.Text = "Change color scheme";
             this.materialRaisedButton1.UseVisualStyleBackColor = true;
@@ -458,7 +456,7 @@ namespace MaterialSkinExample
             this.materialCheckBox6.Cursor = System.Windows.Forms.Cursors.Default;
             this.materialCheckBox6.Depth = 0;
             this.materialCheckBox6.Enabled = false;
-            this.materialCheckBox6.Font = new System.Drawing.Font("Roboto", 11F);
+            this.materialCheckBox6.Font = new System.Drawing.Font("Nazanintar", 11F);
             this.materialCheckBox6.Location = new System.Drawing.Point(0, 158);
             this.materialCheckBox6.Margin = new System.Windows.Forms.Padding(0);
             this.materialCheckBox6.MouseLocation = new System.Drawing.Point(-1, -1);
@@ -478,7 +476,7 @@ namespace MaterialSkinExample
             this.materialCheckBox5.Cursor = System.Windows.Forms.Cursors.Default;
             this.materialCheckBox5.Depth = 0;
             this.materialCheckBox5.Enabled = false;
-            this.materialCheckBox5.Font = new System.Drawing.Font("Roboto", 11F);
+            this.materialCheckBox5.Font = new System.Drawing.Font("Nazanintar", 11F);
             this.materialCheckBox5.Location = new System.Drawing.Point(0, 128);
             this.materialCheckBox5.Margin = new System.Windows.Forms.Padding(0);
             this.materialCheckBox5.MouseLocation = new System.Drawing.Point(-1, -1);
@@ -525,7 +523,7 @@ namespace MaterialSkinExample
             this.columnHeader4});
             this.materialListView1.Depth = 0;
             this.materialListView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.materialListView1.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F);
+            this.materialListView1.Font = new System.Drawing.Font("Nazanintar", 32F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.World);
             this.materialListView1.FullRowSelect = true;
             this.materialListView1.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.materialListView1.Location = new System.Drawing.Point(3, 3);
@@ -577,7 +575,7 @@ namespace MaterialSkinExample
             this.materialLabel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.materialLabel2.Depth = 0;
-            this.materialLabel2.Font = new System.Drawing.Font("Roboto", 11F);
+            this.materialLabel2.Font = new System.Drawing.Font("Nazanintar", 11F);
             this.materialLabel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.materialLabel2.Location = new System.Drawing.Point(3, 15);
             this.materialLabel2.MouseState = MaterialSkin.MouseState.Hover;
@@ -735,7 +733,6 @@ namespace MaterialSkinExample
             this.Text = "نمونه پوسته متریال";
             this.materialTabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             this.tabPage3.ResumeLayout(false);
