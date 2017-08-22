@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata minClientVersion="2.8">
+    <id>PersianMaterialSkin</id>
+    <title>Persian Material Skin</title>
+    <iconUrl>
+      <!--https://raw.githubusercontent.com/Behzadkhosravifar/AdoManager/master/src/AdoManager/favicon.png-->
+    </iconUrl>
+    <version>2.0.1</version>
+    <description>
+      Persian Theming WinForms (C# or VB.Net) to Google's Material Design Principles.
+
+      for more informations: https://github.com/Behzadkhosravifar/MaterialSkin
+    </description>
+    <summary>
+      Persian Theming WinForms (C# or VB.Net) to Google's Material Design Principles.
+    </summary>
+    <authors>Behzad Khosravifar</authors>
+    <owners>Behzad Khosravifar</owners>
+    <licenseUrl>http://www.gnu.org/licenses/gpl.txt</licenseUrl>
+    <projectUrl>https://xomorod.com</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <releaseNotes>
+      * Fix right to left issue
+      * Add numerical textbox
+      * Add new theme by eastern blue color
+    </releaseNotes>
+    <copyright>Copyright (C) 2017-2018 Behzad Khosravifar</copyright>
+    <tags>
+      material design theme winforms materialskin persian rtl
+    </tags>
+    <developmentDependency>false</developmentDependency>
+  </metadata>
+  <files>
+    <file src="..\Out\MaterialSkin.dll" target="lib\net45" />
+  </files>
+</package>
