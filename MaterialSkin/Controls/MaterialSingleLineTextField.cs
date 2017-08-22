@@ -44,8 +44,6 @@ namespace MaterialSkin.Controls
         public bool UseSystemPasswordChar { get { return _baseTextBox.UseSystemPasswordChar; } set { _baseTextBox.UseSystemPasswordChar = value; } }
         public char PasswordChar { get { return _baseTextBox.PasswordChar; } set { _baseTextBox.PasswordChar = value; } }
 
-        public override bool AutoSize { get { return _baseTextBox.AutoSize; } set { _baseTextBox.AutoSize = value; } }
-
         [Browsable(true), EditorBrowsable(EditorBrowsableState.Always)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         [Description("Hint text, when text box is empty this value be superseded."), Category("Appearance")]
@@ -1118,7 +1116,7 @@ namespace MaterialSkin.Controls
                 ForeColor = SkinManager.GetPrimaryTextColor(),
                 Location = new Point(0, 0),
                 Width = Width,
-                Height = Height// - 5
+                Height = Height - 5
             };
 
             if (!Controls.Contains(_baseTextBox) && !DesignMode)
@@ -1177,8 +1175,7 @@ namespace MaterialSkin.Controls
 
             _baseTextBox.Location = new Point(0, 0);
             _baseTextBox.Width = Width;
-            _baseTextBox.Height = Height;
-            //Height = _baseTextBox.Height + 5;
+            Height = _baseTextBox.Height + 5;
         }
 
         protected override void OnCreateControl()
