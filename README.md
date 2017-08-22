@@ -1,7 +1,7 @@
-MaterialSkin for .NET WinForms
+Perisan Material Skin for .NET WinForms
 =====================
 
-Theming .NET WinForms, C# or VB.Net, to Google's Material Design Principles.
+Persian Theming .NET WinForms, C# or VB.Net, to Google's Material Design Principles. This project forked from [here](https://github.com/IgnaceMaes/MaterialSkin)
 
 <a href="https://www.youtube.com/watch?v=A8osVM_SXlg" target="_blank">![alt tag](http://i.imgur.com/JAttoOo.png)</a>
 
