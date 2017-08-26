@@ -580,6 +580,9 @@ namespace MaterialSkin.Controls
 
             //Form title
             g.DrawString(Text, SkinManager.NazanintarMedium13, SkinManager.ColorScheme.TextBrush, new Rectangle(SkinManager.FormPadding, StatusBarHeight, Width - 30, ActionBarHeight), new StringFormat { LineAlignment = StringAlignment.Center, Alignment = StringAlignment.Far });
+
+            if(ShowIcon)
+                g.DrawIconUnstretched(Icon, new Rectangle(5, 30, 50, 50));
         }
 
         #endregion
