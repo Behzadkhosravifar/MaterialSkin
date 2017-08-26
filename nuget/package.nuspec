@@ -6,7 +6,7 @@
     <iconUrl>
       https://github.com/Behzadkhosravifar/MaterialSkin/raw/master/Solution%20Items/logo.png
     </iconUrl>
-    <version>2.0.2</version>
+    <version>2.0.3</version>
     <description>
       Persian Theming WinForms (C# or VB.Net) to Google's Material Design Principles.
       for more informations: https://github.com/Behzadkhosravifar/MaterialSkin
@@ -20,7 +20,7 @@
     <projectUrl>https://xomorod.com</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <releaseNotes>
-      * Fix buttons AutoSize feature
+      * Add Icon feature to material forms
     </releaseNotes>
     <copyright>Copyright (C) 2017-2018 Behzad Khosravifar</copyright>
     <tags>
